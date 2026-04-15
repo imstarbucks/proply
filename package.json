@@ -1,17 +1,22 @@
 {
-  "name": "proply",
-  "private": true,
-  "packageManager": "bun@1.2.21",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "lint": "turbo lint"
-  },
-  "devDependencies": {
-    "turbo": "^2"
-  }
+	"name": "proply",
+	"private": true,
+	"packageManager": "bun@1.2.21",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"lint": "turbo lint",
+		"format": "biome check .",
+		"format:fix": "biome check . --write",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.12",
+		"husky": "^9.1.7",
+		"turbo": "^2"
+	}
 }
