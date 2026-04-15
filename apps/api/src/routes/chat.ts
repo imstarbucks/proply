@@ -1,5 +1,5 @@
-import { ChatInputSchema } from "@proply/types";
 import type { APIResponse } from "@proply/types";
+import { ChatInputSchema } from "@proply/types";
 import { Hono } from "hono";
 import { streamSSE } from "hono/streaming";
 import { getChatResponse } from "../utils/openai";
