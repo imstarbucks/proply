@@ -5,7 +5,8 @@
 		"build": "bun build src/index.ts --outdir dist --target bun"
 	},
 	"dependencies": {
-		"hono": "^4.12.14"
+		"hono": "^4.12.14",
+		"openai": "^6.34.0"
 	},
 	"devDependencies": {
 		"@types/bun": "latest"
