@@ -1,2 +1,3 @@
-// Shared TypeScript types for Proply
-export {};
+import { APIResponse } from "./api/response";
+
+export { APIResponse };
