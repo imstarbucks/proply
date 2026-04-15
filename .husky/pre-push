@@ -1,2 +1,2 @@
 bunx @biomejs/biome check .
-bun run --filter='*' tsc --noEmit
+bun run tsc --noEmit
