@@ -1,2 +1,2 @@
 bunx @biomejs/biome check .
-bun run tsc --noEmit
+bunx tsc --noEmit
