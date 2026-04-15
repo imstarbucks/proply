@@ -1,11 +1,17 @@
-type APIResponseSuccess = {
-	success: true;
-	message: string;
-};
+import { z } from "zod";
+export const APIResponseSuccessSchema = z.object({
+	success: z.literal(true),
+	message: z.string(),
+});
 
-type APIResponseFailed = {
-	success: false;
-	error: unknown;
-};
+export const APIResponseFailedSchema = z.object({
+	success: z.literal(false),
+	error: z.string(),
+});
 
-export type APIResponse = APIResponseSuccess | APIResponseFailed;
+export const APIResponseSchema = z.discriminatedUnion("success", [
+	APIResponseSuccessSchema,
+	APIResponseFailedSchema,
+]);
+
+export type APIResponse = z.infer<typeof APIResponseSchema>;
