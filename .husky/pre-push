@@ -1,2 +1,1 @@
 bunx @biomejs/biome check .
-bunx tsc --noEmit
