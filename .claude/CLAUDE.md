@@ -10,7 +10,7 @@ Multi-tenant — every query must be scoped to a tenant_id.
 - Backend: Bun + Hono (REST API + SSE streaming)
 - Database: Supabase (Postgres + Auth + Storage)
 - Cache: Upstash Redis
-- AI: Anthropic Claude API (claude-sonnet-4-20250514)
+- AI: OpenAI API
 - Deploy: Vercel (frontend) + Railway (backend)
 - Monorepo: Turborepo
 
@@ -45,8 +45,8 @@ Multi-tenant — every query must be scoped to a tenant_id.
 - Never write raw SQL — use Prisma ORM only
 - Always paginate list queries — default limit 20
 
-## AI / Claude API Rules
-- Model: claude-sonnet-4-20250514 — never change this without asking
+## AI / OpenAI API Rules
+- Never change the model without asking first
 - Always include system prompt from /lib/prompts/system.ts
 - Tool definitions live in /lib/tools/index.ts — never inline them
 - Never log message content — privacy sensitive
@@ -82,7 +82,7 @@ Multi-tenant — every query must be scoped to a tenant_id.
 ## Current MVP Scope
 In scope:
 - Floating chat widget
-- Claude tool calling (3 components)
+- OpenAI tool calling (3 components)
 - Lead capture
 - Client dashboard (leads + conversations)
 - WordPress plugin (script tag embed)
