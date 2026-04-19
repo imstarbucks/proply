@@ -6,7 +6,7 @@ import { getChatResponse } from "../utils/openai";
 
 const chat = new Hono();
 
-chat.post("/", async (c) => {
+chat.post("/chat", async (c) => {
 	const req = c.req;
 
 	const body = await req.json();
@@ -22,22 +22,48 @@ chat.post("/", async (c) => {
 		);
 	}
 
-	return streamSSE(c, async (stream) => {
+	return streamSSE(c, async (sseStream) => {
 		try {
-			const res = await getChatResponse(parsed.data.input);
+			const openaiStream = await getChatResponse(
+				parsed.data.input,
+				parsed.data.previous_response_id
+			);
 
-			await stream.writeSSE({
-				data: res,
-				event: "chunk",
-			});
+			let responseId: string | null = null;
 
-			await stream.writeSSE({
+			for await (const event of openaiStream) {
+				if (event.type === "response.created") {
+					responseId = event.response.id;
+				} else if (event.type === "response.output_text.delta") {
+					await sseStream.writeSSE({
+						data: event.delta,
+						event: "chunk",
+					});
+				} else if (event.type === "response.web_search_call.searching") {
+					const { query } = event as unknown as { query: string };
+					if (query) {
+						await sseStream.writeSSE({
+							data: query,
+							event: "web_search",
+						});
+					}
+				}
+			}
+
+			if (responseId) {
+				await sseStream.writeSSE({
+					data: responseId,
+					event: "response_id",
+				});
+			}
+
+			await sseStream.writeSSE({
 				data: "[DONE]",
 				event: "done",
 			});
 		} catch (error) {
 			console.error(error);
-			await stream.writeSSE({
+			await sseStream.writeSSE({
 				data: "Something went wrong",
 				event: "error",
 			});
