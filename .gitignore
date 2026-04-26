@@ -1,4 +1,28 @@
 node_modules
 
-.DS_Store
+# Environment
 .env*
+
+# macOS
+.DS_Store
+
+# Next.js
+.next/
+out/
+
+# Turbo
+.turbo/
+
+# Wrangler
+.wrangler/
+worker-configuration.d.ts
+
+# Build outputs
+dist/
+build/
+
+# Bun
+*.bun
+
+# TypeScript
+*.tsbuildinfo
