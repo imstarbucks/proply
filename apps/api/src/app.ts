@@ -2,7 +2,6 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import chat from "./routes/chat";
-import user from "./routes/user";
 
 const app = new Hono();
 
@@ -23,6 +22,5 @@ app.get("/health-check", (c) => {
 });
 
 app.route("/api", chat);
-app.route("/api", user);
 
 export default app;

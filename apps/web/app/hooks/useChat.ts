@@ -96,7 +96,7 @@ export const useChat = () => {
 		} catch (err) {
 			if (err instanceof Error && err.name === "AbortError") return;
 			setError("Something went wrong while streaming.");
-      console.error(err)
+			console.error(err);
 		} finally {
 			setPending(false);
 			abortRef.current = null;
