@@ -16,8 +16,8 @@ export const createClient = async () => {
 							cookieStore.set(name, value, options)
 						);
 					} catch {
-            // handle in middleware
-          }
+						// handle in middleware
+					}
 				},
 			},
 		}
