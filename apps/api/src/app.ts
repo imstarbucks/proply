@@ -5,10 +5,16 @@ import chat from "./routes/chat";
 
 const app = new Hono();
 
+const FRONTEND_URL = process.env.FRONTEND_URL ?? "http://localhost:3000";
+
+// TODO:
+// Update widget url to embeded chatbot website url
+const WIDGET_URL = process.env.WIDGET_URL ?? "http://localhost:4000";
+
 app.use(logger());
 app.use(
 	cors({
-		origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+		origin: [FRONTEND_URL, WIDGET_URL],
 		allowMethods: ["GET", "POST", "OPTIONS"],
 		allowHeaders: ["Content-Type", "X-Tenant-ID", "Authorization"],
 	})

@@ -7,7 +7,7 @@ Multi-tenant — every query must be scoped to a tenant_id.
 
 ## Tech Stack
 - Frontend: Next.js 15 (App Router, Server Components)
-- CSS framework: TailwindCSS v4
+- CSS framework: UnoCSS (preset-wind4) — shared config in `packages/styles`
 - Backend: Bun + Hono (REST API + SSE streaming)
 - Database: Supabase (Postgres + Auth + Storage)
 - Cache: Upstash Redis

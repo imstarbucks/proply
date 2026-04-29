@@ -9,8 +9,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "turbo dev",
+		"dev:widget": "turbo dev --filter=widget",
 		"dev:wrangler": "turbo dev:wrangler",
 		"build": "turbo build",
+		"build:widget": "turbo build --filter=widget",
+		"test:widget": "turbo test:page --filter=widget",
 		"lint": "turbo lint",
 		"format": "biome check .",
 		"format:fix": "biome check . --write",
@@ -19,5 +22,8 @@
 	"workspaces": [
 		"apps/*",
 		"packages/*"
+	],
+	"trustedDependencies": [
+		"esbuild"
 	]
 }
